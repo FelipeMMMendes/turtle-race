@@ -11,12 +11,18 @@ tela.setup(width=500, height=400)
 escolhaUsuario = tela.textinput("Escolha de tartaruga: ","Cor: ")
 #armazena o valor na variavel escolhaUsuario
 
+#variavel flag para manter a corrida acontecendo
+corridaAtiva = True
+
 #lista contendo todas as cores, para ser acessadas e usadas no 
 # momento de instanciação das tartarugas
 colors = ["red","orange","yellow","green","blue","purple"]
 
 #lista contendo os nomes das tartarugas
-turtles = ["felipe","jonas","lucas","pedrox","pingu","4K"]
+turtleNames = ["felipe","jonas","lucas","pedrox","pingu","4K"]
+
+#lista para armazenar as tartarugas instanciadas
+turtles = []
 
 #variaveis flag para colocar as tartarugas em suas devidas posicoes
 x=-230
@@ -25,7 +31,7 @@ y=-100
 #variavel flag para controlar a posicao da cor
 colorId = 0
 
-for name in turtles:
+for name in turtleNames:
     name = Turtle(shape="turtle")
     name.color(colors[colorId])
     name.penup()
@@ -34,7 +40,16 @@ for name in turtles:
     colorId += 1
 
     name.goto(x=x,y=y)
+    turtles.append(name)
 
+
+#importando a funcao para escolher numeros aleatorios
+from random import randrange
+
+#laco que vai manter as tartarugas correndo
+while corridaAtiva:
+    for turtle in turtles:
+        turtle.forward(randrange(0, 11))
 
 
 tela.exitonclick()
